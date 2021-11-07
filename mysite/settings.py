@@ -132,3 +132,9 @@ MEDIA_ROOT = '/home/tv81bachelours/mysite/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/tv81bachelours/mysite/static'
 STATIC_URL = '/static/'
+
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 15
+}
