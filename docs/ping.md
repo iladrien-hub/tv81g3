@@ -15,6 +15,6 @@ Used to make sure api is running.
 
 ```json
 {
-    "message":"Hi there! Topics APIv0 up and running!"
+  "message": "Hi there! Topics APIv0 up and running!"
 }
 ```
