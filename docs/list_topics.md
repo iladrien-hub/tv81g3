@@ -2,7 +2,7 @@
 
 Used to list topics
 
-**URL** : `/api/topics/`
+**URL** : `/api/v0/topics/`
 
 **Method** : `GET`
 
