@@ -11,9 +11,9 @@ Used to list topics
 **Data constraints**
 
 | Parameter | Required | Default | Description |
-|-----------|:--------:|:-------:|------------:|
+|-----------|:--------:|:-------:|:------------|
 | limit     | NO       | 15 | Number of topics requested |
-| offset | NO | 0 | Number of topics requested |
+| offset | NO | 0 | The number of the first topic in the list |
 
 ## Success Response
 
