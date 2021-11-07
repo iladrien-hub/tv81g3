@@ -17,7 +17,7 @@ class BachelorTopicAdmin(admin.ModelAdmin):
     search_fields = ('title', 'year', )
 
     list_display = ('theme_title', 'students', 'director', 'year')
-    ordering = ('title', 'year', 'director', )
+    ordering = ('year', 'director', )
 
     def students(self, obj):
         return ", ".join(f'{student.last_name} {student.first_name[0]}. {student.patronymic[0]}.' for student in obj.student_set.all())
