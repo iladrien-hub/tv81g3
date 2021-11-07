@@ -58,8 +58,7 @@ class Command(BaseCommand):
             directors.append(d)
 
         self.stdout.write(self.style.SUCCESS("Generating themes..."))
-        for _ in range(200):
-            title = random.choice(themes)
+        for title in themes:
             year = random.randint(2000, 2021)
             director = random.choice(directors)
             self.stdout.write(self.style.SUCCESS(f"  - {title} {director} {year}"))
