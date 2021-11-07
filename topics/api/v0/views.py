@@ -17,12 +17,6 @@ def ping(request):
 
 
 class ListTopics(ListAPIView):
-    """
-    View to list all users in the system.
-
-    * Requires token authentication.
-    * Only admin users are able to access this view.
-    """
     permission_classes = [AllowAny]
     queryset = BachelorTopic.objects.all()
     serializer_class = BachelorTopicSerializer
