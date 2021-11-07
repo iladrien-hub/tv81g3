@@ -86,6 +86,7 @@ venv.bak/
 
 # mkdocs documentation
 /site
+/docs/example.md
 
 # mypy
 .mypy_cache/
@@ -117,3 +118,6 @@ GitHub.sublime-settings
 
 # Privacy
 databases.json
+
+# Bots data
+bot_data
