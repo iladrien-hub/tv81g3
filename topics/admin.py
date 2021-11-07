@@ -27,11 +27,11 @@ class ScientificDirectorAdmin(admin.ModelAdmin):
 class BachelorTopicAdmin(admin.ModelAdmin):
     search_fields = ('title', 'year', )
 
-    list_display = ('theme_title', 'students', 'director', 'year')
+    list_display = ('topic_title', 'students', 'director', 'year')
     ordering = ('year', 'director', )
 
     def students(self, obj):
         return ", ".join(f'{student.last_name} {student.first_name[0]}. {student.patronymic[0]}.' for student in obj.student_set.all())
 
-    def theme_title(self, obj):
+    def topic_title(self, obj):
         return (obj.title[:75] + '..') if len(obj.title) > 75 else obj.title
