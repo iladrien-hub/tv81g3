@@ -6,6 +6,17 @@ from .models import Student, ScientificDirector, BachelorTopic
 class StudentAdmin(admin.ModelAdmin):
     search_fields = ('first_name', 'last_name')
 
+    list_display = ('__str__', 'topic', 'director', 'year')
+
+    def topic(self, obj):
+        return obj.topic.title
+
+    def director(self, obj):
+        return obj.topic.director
+
+    def year(self, obj):
+        return obj.topic.year
+
 
 @admin.register(ScientificDirector)
 class ScientificDirectorAdmin(admin.ModelAdmin):
