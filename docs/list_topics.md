@@ -23,16 +23,29 @@ Used to list topics
 
 ```json
 {
-    "count": 229,
-    "next": "http://127.0.0.1:8000/api/v0/topics/?limit=15&offset=15",
-    "previous": null,
-    "results": [
-        . . .
+  "count": 229,
+  "next": "http://tv81bachelours.pythonanywhere.com/api/v0/topics/?limit=15&offset=30",
+  "previous": "http://tv81bachelours.pythonanywhere.com/api/v0/topics/?limit=15",
+  "results": [
+    {
+      "title": "Інформаційна основа управління економікою",
+      "year": 2011,
+      "director": {
+        "pk": 95,
+        "last_name": "Князєва",
+        "first_name": "Уляна",
+        "patronymic": "Тимофіївна"
+      },
+      "students": [
         {
-            "title": "Історія розвитку інформатики"
-        },
-        . . .
-    ]
+          "pk": 2060,
+          "last_name": "Філімонов",
+          "first_name": "Мирослав",
+          "patronymic": "Гордійович"
+        }
+      ]
+    }
+  ]
 }
 ```
 
