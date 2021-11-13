@@ -18,5 +18,14 @@ def ping(request):
 
 class ListTopics(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = BachelorTopic.objects.all()
     serializer_class = BachelorTopicSerializer
+
+    def get_queryset(self):
+        queryset = list(BachelorTopic.objects.all())
+
+        title: str = self.request.query_params.get('title')
+        if title:
+            title = title.lower()
+            queryset = list(filter(lambda x: title in x.title.lower(), queryset))
+
+        return queryset
