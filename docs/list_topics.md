@@ -14,6 +14,8 @@ Used to list topics
 |-----------|:--------:|:-------:|:------------|
 | limit     | NO       | 15 | Number of topics requested |
 | offset | NO | 0 | The number of the first topic in the list |
+| title | NO | None | Used to filter topics by title. Case insensitively. |
+| year | NO | None | Used to filter topics by year.
 
 ## Success Response
 
@@ -28,6 +30,7 @@ Used to list topics
   "previous": "http://tv81bachelours.pythonanywhere.com/api/v0/topics/?limit=15",
   "results": [
     {
+      "pk": 1491,
       "title": "Інформаційна основа управління економікою",
       "year": 2011,
       "director": {
@@ -49,3 +52,16 @@ Used to list topics
 }
 ```
 
+## Error Response
+
+**Condition** : If year is not a valid integer value.
+
+**Code** : `400 BAD REQUEST`
+
+**Content** :
+
+```json
+{
+    "year": "Value \"2020ads\" can't be interpreted as integer."
+}
+```
