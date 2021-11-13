@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from topics.api.v0.serializers import BachelorTopicSerializer
+from topics.errors import BadRequest
 from topics.models import BachelorTopic
 
 
@@ -18,5 +19,24 @@ def ping(request):
 
 class ListTopics(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = BachelorTopic.objects.all()
     serializer_class = BachelorTopicSerializer
+
+    def get_queryset(self):
+        queryset = list(BachelorTopic.objects.all())
+
+        title: str = self.request.query_params.get('title')
+        if title:
+            title = title.lower()
+            queryset = list(filter(lambda x: title in x.title.lower(), queryset))
+
+        year = self.request.query_params.get('year')
+        if year:
+            try:
+                year = int(year)
+            except ValueError:
+                raise BadRequest({
+                    "year": f"Value \"{year}\" can't be interpreted as integer."
+                })
+            queryset = list(filter(lambda x: year == x.year, queryset))
+
+        return queryset
