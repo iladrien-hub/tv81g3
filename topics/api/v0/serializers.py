@@ -16,6 +16,7 @@ class StudentSerializer(serializers.Serializer):
 
 
 class BachelorTopicSerializer(serializers.Serializer):
+    pk = serializers.IntegerField()
     title = serializers.CharField(max_length=200)
     year = serializers.IntegerField()
 
