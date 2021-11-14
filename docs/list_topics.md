@@ -15,7 +15,8 @@ Used to list topics
 | limit     | NO       | 15 | Number of topics requested |
 | offset | NO | 0 | The number of the first topic in the list |
 | title | NO | None | Used to filter topics by title. Case insensitively. |
-| year | NO | None | Used to filter topics by year.
+| year | NO | None | Used to filter topics by year. |
+| director | NO | None | Used to filter topics by scientific director's name. <br/> __Note__: The algorithm uses a fuzzy comparison approach. Thus, word order and minor spelling errors do not matter. |
 
 ## Success Response
 
