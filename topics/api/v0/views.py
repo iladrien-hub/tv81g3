@@ -40,6 +40,4 @@ class ListTopics(ListAPIView):
             title = title.lower()
             queryset = list(filter(lambda x: title in x.title.lower(), queryset))
 
-
-
         return queryset
