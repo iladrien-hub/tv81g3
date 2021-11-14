@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Installed apps
     'rest_framework',
+    'fuzzywuzzy',
 ]
 
 MIDDLEWARE = [
