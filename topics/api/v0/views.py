@@ -1,3 +1,4 @@
+from fuzzywuzzy import fuzz
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
@@ -39,5 +40,16 @@ class ListTopics(ListAPIView):
         if title:
             title = title.lower()
             queryset = list(filter(lambda x: title in x.title.lower(), queryset))
+
+        director: str = self.request.query_params.get('director')
+        if director:
+            director = director.lower()
+            scored = [
+                (
+                    fuzz.WRatio(director, str(item.director)),
+                    item
+                ) for item in queryset
+            ]
+            queryset = [i for _, i in sorted(filter(lambda x: x[0] > 70, scored), key=lambda item: -item[0])]
 
         return queryset
