@@ -1,8 +1,8 @@
+from fuzzywuzzy import fuzz
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from topics.api.v0.serializers import BachelorTopicSerializer
 from topics.errors import BadRequest
@@ -22,12 +22,7 @@ class ListTopics(ListAPIView):
     serializer_class = BachelorTopicSerializer
 
     def get_queryset(self):
-        queryset = list(BachelorTopic.objects.all())
-
-        title: str = self.request.query_params.get('title')
-        if title:
-            title = title.lower()
-            queryset = list(filter(lambda x: title in x.title.lower(), queryset))
+        queryset = BachelorTopic.objects.all()
 
         year = self.request.query_params.get('year')
         if year:
@@ -37,6 +32,24 @@ class ListTopics(ListAPIView):
                 raise BadRequest({
                     "year": f"Value \"{year}\" can't be interpreted as integer."
                 })
-            queryset = list(filter(lambda x: year == x.year, queryset))
+            queryset = queryset.filter(year=year)
+
+        queryset = list(queryset)
+
+        title: str = self.request.query_params.get('title')
+        if title:
+            title = title.lower()
+            queryset = list(filter(lambda x: title in x.title.lower(), queryset))
+
+        director: str = self.request.query_params.get('director')
+        if director:
+            director = director.lower()
+            scored = [
+                (
+                    fuzz.WRatio(director, str(item.director)),
+                    item
+                ) for item in queryset
+            ]
+            queryset = [i for _, i in sorted(filter(lambda x: x[0] > 70, scored), key=lambda item: -item[0])]
 
         return queryset
